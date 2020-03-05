@@ -1,0 +1,47 @@
+Eléments de jeu :
+Snoopy (joueur)
+méchante balle (bouge en diagonale)
+téléporteurs
+tapis roulants
+blocs cassables
+blocs poussables
+blocs piégés
+cases vides
+
+Niveaux :
+3 minimums
+3 vies
+60 secondes chrono (sinon perds une vie et recomance le niveau)
+but = récupérer 4 oiseaux aux coins de la map dans le temps imparti.
+accessible par un mot de passe
+
+Menu :
+1.jeu de base (un seul joueur)
+2.jeu avancé (ordianteur)
+3.charger une partie
+4.mot de passe
+5.scores
+6.quitter
+
+calcule du score :
+score = tps restant * 100;
+score final = somme des niveauxS
+
+fichier de sauvegarde :
+-position de snoopy
+-position de la (ou des) balle(s)
+-position des blocs / oiseaux / etc
+-tps restant
+-nombre de vies
+-score courrant
+-nom dufichier de sauvegarde
+
+affichage :
+-afficher la grille de jeu
+-afficher les touches de contrôle pour guider l'utilisateur
+-afficher les textes en fraçais
+
+convention de code :
+-code rédiger en anglais (sauf les commentaires)
+-toujours tester un pointeur
+

@@ -1,0 +1,12 @@
+PACKAGING : MENU
+
+Les fonctions associées au menu du jeu.
+
+Fonctions :
+  - Menu.java (c'est le menu évidemment)
+  - Codes.java (pour accéder à un niveau particulier)
+  - Scores.java (pour voir les meilleurs scores)
+  
+Autres fichiers : 
+  - SnoopyMenu.png (image d'arrière plan menu)
+  - "dossier d'image boutons" (boutons de menu)

@@ -1,0 +1,17 @@
+PACKAGING : BEGINNING
+
+Les fonctions qu'on utilise dès la mise en route du jeu ou qui seront utilisées 
+de manière générale dans tout le programme (ex: fonction Button.java).
+
+Fonctions :
+  - start.java (class main au démarrage)
+  - Wall.java
+  - Window.java
+  - Button.java
+  - ImagePanel.java
+  - Sound.java (musique de jeu)
+  - Intro.java (affichage d'une image d'ouverture au début du jeu)
+  
+Autres fichiers : 
+  - SnoopyGame.png (image d'ouverture)
+  - ThemeSong.mp3 (musique de jeu)

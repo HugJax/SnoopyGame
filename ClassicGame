@@ -1,0 +1,12 @@
+PACKAGING : CLASSICGAME
+
+Les fonctions pour pouvoir jouer au jeu.
+
+Fonctions :
+  - LoadGame.java (charge le jeu en fonction des informations reçus, seed/partie sauvegardée/...)
+  - LoadField.java (chargement et affichage de la map et des éléments à partir d'une matrice)
+  - Timer.java (calcul le temps et crée également le score et l'enregistrement de ce dernier sur un fichier texte)
+  - SaveGame.java (système de sauvegarde)
+  
+Autres fichiers : 
+  - "dossier d'image d'entités" (pour la map et les différents éléments)

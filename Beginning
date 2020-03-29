@@ -14,4 +14,4 @@ Fonctions :
   
 Autres fichiers : 
   - SnoopyGame.png (image d'ouverture)
-  - ThemeSong.mp3 (musique de jeu)
+  - dossier sounds (musique de jeu) à mettre dans le dossier: SnoopyGame\target\classes\Openning

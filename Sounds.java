@@ -29,11 +29,11 @@ public class Sounds {
     }
     
     // Load theme song of the game
-    public static void loadmusic(String store) {
+    public static void loadmusic(String store, String son) {
         if(music.get(store) != null) return;
         Clip clip;
         try {
-            InputStream load = Sounds.class.getResourceAsStream("sounds/themesong.wav");
+            InputStream load = Sounds.class.getResourceAsStream(son);
             if(load == null) {
                 System.out.println("bande son manquante absente");
             }

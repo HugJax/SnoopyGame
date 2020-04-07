@@ -92,6 +92,11 @@ public class Stage extends JPanel {
     return snoopy;
     }
     
+      public int[][] getTilemap()
+    {
+    return tilemap;
+    }
+    
     public void moveSnoopy(int movement) {
         
         switch(movement) {

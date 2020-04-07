@@ -71,6 +71,20 @@ public class GamePage extends Page {
                 
             case KeyEvent.VK_ESCAPE:
                 break;
+                
+             case KeyEvent.VK_C:
+                int map[][]=stage.getTilemap();
+                int x=stage.getSnoopy().getPosX();
+                int y=stage.getSnoopy().getPosY();
+                if(map[y+1][x]==1)
+                    map[y+1][x]=0;
+                if(map[y-1][x]==1)
+                    map[y-1][x]=0;
+                if(map[y][x+1]==1)
+                    map[y][x+1]=0;
+                if(map[y][x-1]==1)
+                    map[y][x-1]=0;
+                break;
             
         }
         

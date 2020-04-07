@@ -31,6 +31,18 @@ public class Stage extends JPanel {
         {0, 0, 0, 0 ,0, 0, 0, 0, 0, 0/*, 0, 0, 0, 0 ,0, 0, 0, 0, 0, 0*/}
     };
     
+    private int [][] bool = {
+        {0, 0, 0, 0 ,0, 0, 0, 0, 0, 0/*, 0, 0, 0, 0 ,0, 0, 0, 0, 0, 0*/},
+        {0, 0, 0, 0 ,0, 0, 0, 0, 0, 0/*, 0, 0, 0, 0 ,0, 0, 0, 0, 0, 0*/},
+        {0, 0, 0, 0 ,0, 0, 0, 0, 0, 0/*, 0, 0, 0, 0 ,0, 0, 0, 0, 0, 0*/},
+        {0, 0, 0, 0 ,0, 0, 0, 0, 0, 0/*, 0, 0, 0, 0 ,0, 0, 0, 0, 0, 0*/},
+        {0, 0, 0, 0 ,0, 0, 0, 0, 0, 0/*, 0, 0, 0, 0 ,0, 0, 0, 0, 0, 0*/},
+        {0, 0, 0, 0 ,0, 0, 0, 0, 0, 0/*, 0, 0, 0, 0 ,0, 0, 0, 0, 0, 0*/},
+        {0, 0, 0, 0 ,0, 0, 0, 0, 0, 0/*, 0, 0, 0, 0 ,0, 0, 0, 0, 0, 0*/},
+        {0, 0, 0, 0 ,0, 0, 0, 0, 0, 0/*, 0, 0, 0, 0 ,0, 0, 0, 0, 0, 0*/},
+        {0, 0, 0, 0 ,0, 0, 0, 0, 0, 0/*, 0, 0, 0, 0 ,0, 0, 0, 0, 0, 0*/},
+        {0, 0, 0, 0 ,0, 0, 0, 0, 0, 0/*, 0, 0, 0, 0 ,0, 0, 0, 0, 0, 0*/}
+    };
     private final Snoopy snoopy;
     
     public Stage(int [][] matrix) {
@@ -85,10 +97,32 @@ public class Stage extends JPanel {
         switch(movement) {
             
             case Movement.UP:
+                int p;
                 if(this.snoopy.getPosY() > 0) {
                     
+                    int SnoopyY=this.snoopy.getPosY();
+                    int SnoopyX=this.snoopy.getPosX();
+                    if((tilemap[SnoopyY-1][SnoopyX]!=5)&&(tilemap[SnoopyY-1][SnoopyX]!=1)){
+                        
+                        if(tilemap[SnoopyY-1][SnoopyX]==2){
+                                if((tilemap[SnoopyY-2][SnoopyX]==0)&&(bool [SnoopyY-1][SnoopyX]==0)){
+                                    tilemap[SnoopyY-1][SnoopyX]=0;
+                                    tilemap[SnoopyY-2][SnoopyX]=2;
+                         
+                                    bool [SnoopyY-2][SnoopyX]=1;
+                                }
+                                else
+                                break;
+                                   
+                        }
+                    
                     this.snoopy.move(movement);
-                    //Stage.repaint();
+                    }      
+                        
+                    
+                        
+                   
+                    
                     
                 }
                 break;
@@ -96,17 +130,49 @@ public class Stage extends JPanel {
             case Movement.DOWN:
                 if(this.snoopy.getPosY() < this.tilemapHeight - 1) {
                     
+                    int SnoopyY=this.snoopy.getPosY();
+                    int SnoopyX=this.snoopy.getPosX();
+                    if((tilemap[SnoopyY+1][SnoopyX]!=5)&&(tilemap[SnoopyY+1][SnoopyX]!=1)){
+                        
+                    if((tilemap[SnoopyY+1][SnoopyX]==2)){
+                                if((tilemap[SnoopyY+2][SnoopyX]==0)&&(bool [SnoopyY+1][SnoopyX]==0)){
+                                    tilemap[SnoopyY+1][SnoopyX]=0;
+                                    tilemap[SnoopyY+2][SnoopyX]=2;
+                                    bool [SnoopyY+2][SnoopyX]=1;
+                                }
+                                else
+                                break;
+                    }
                     this.snoopy.move(movement);
-                    //Stage.repaint();
+                            
+                    }
+                    
+                   
                     
                 }
                 break;
                 
             case Movement.RIGHT:
+               
                 if(this.snoopy.getPosX() < this.tilemapWidth - 1) {
                     
+                  int SnoopyY=this.snoopy.getPosY();
+                    int SnoopyX=this.snoopy.getPosX();
+                    if((tilemap[SnoopyY][SnoopyX+1]!=5)&&(tilemap[SnoopyY][SnoopyX+1]!=1)){
+                       
+                        if(tilemap[SnoopyY][SnoopyX+1]==2){
+                                if((tilemap[SnoopyY][SnoopyX+2]==0)&&(bool [SnoopyY][SnoopyX+1]==0)){
+                                    tilemap[SnoopyY][SnoopyX+1]=0;
+                                    tilemap[SnoopyY][SnoopyX+2]=2;
+                                    bool [SnoopyY][SnoopyX+2]=1;
+                                }
+                                else
+                                break;
+                                
+                        }       
                     this.snoopy.move(movement);
-                    //Stage.repaint();
+                    }
+                    
                     
                 }
                 break;
@@ -114,9 +180,22 @@ public class Stage extends JPanel {
             case Movement.LEFT:
                 if(this.snoopy.getPosX() > 0) {
                     
+                    int SnoopyY=this.snoopy.getPosY();
+                    int SnoopyX=this.snoopy.getPosX();
+                    if((tilemap[SnoopyY][SnoopyX-1]!=5)&&(tilemap[SnoopyY][SnoopyX-1]!=1)){
+                       
+                     if(tilemap[SnoopyY][SnoopyX-1]==2){
+                                if((tilemap[SnoopyY][SnoopyX-2]==0)&&(bool [SnoopyY][SnoopyX-1]==0)){
+                                    tilemap[SnoopyY][SnoopyX-1]=0;
+                                    tilemap[SnoopyY][SnoopyX-2]=2;
+                                    bool [SnoopyY][SnoopyX-2]=1;
+                                }
+                                else
+                                break;
+                        }   
                     this.snoopy.move(movement);
-                    //Stage.repaint();
-                    
+        
+                    }   
                 }
                 break;
             

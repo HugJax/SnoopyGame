@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 import Openning.*;
 import JeuDeBase.Entity.*;
 import JeuDeBase.Mapping.*;
+import JeuDeBase.Counter.*;
 
 import java.io.PrintWriter;
 
@@ -12,6 +13,12 @@ import java.io.PrintWriter;
 public class GamePage extends Page {
     
     private Stage stage;
+    public int level = 1;
+    Time timer = new Time();
+    
+    public GamePage(){
+        
+    }
     
     public GamePage(int idxStage,int [] [] matrix) {
         
@@ -31,7 +38,7 @@ public class GamePage extends Page {
        // this.stage = new Stage();
         this.remove(this.stage);
         this.add(this.stage);
-        
+        timer.setTime();
     }
     
 
@@ -69,10 +76,7 @@ public class GamePage extends Page {
                 
                 break;
                 
-            case KeyEvent.VK_ESCAPE:
-                break;
-                
-             case KeyEvent.VK_C:
+                case KeyEvent.VK_C:
                 int map[][]=stage.getTilemap();
                 int x=stage.getSnoopy().getPosX();
                 int y=stage.getSnoopy().getPosY();
@@ -84,6 +88,9 @@ public class GamePage extends Page {
                     map[y][x+1]=0;
                 if(map[y][x-1]==1)
                     map[y][x-1]=0;
+                break;
+                
+            case KeyEvent.VK_ESCAPE:
                 break;
             
         }

@@ -7,26 +7,34 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import Openning.*;
 import JeuDeBase.GameState.*;
-import JeuDeBase.Mapping.*;
-
 
 
 public class HomePage extends Page {
     
     private final ArrayList<Button> arrayButtons;
+    MotDePasse mdp = new MotDePasse();
+    ChargerPartie charge = new ChargerPartie();
+    
     private int selection;
+    
     
     public HomePage() {
         
         super();
         setLayout(new GridLayout(6, 1));
         MyInterface.window.setBackground(Color.black);
+        Scores scoring = new Scores();
         
         arrayButtons = new ArrayList<>();
         
         // jouer
         arrayButtons.add(new Button("textures/bouton jouer", () -> {
-            MyInterface.window.setPage(new GamePage(0));
+            String file1 = "Map1.txt";
+            FileReaderProject reader1x = new FileReaderProject(file1);
+            String [] rowx = reader1x.getinput();
+            MatrixMaker makerx=new MatrixMaker(rowx);
+            int [][] matrixx = makerx.create();
+            MyInterface.window.setPage(new GamePage(0, matrixx));
         }));
         
         // ordinateur
@@ -36,17 +44,20 @@ public class HomePage extends Page {
         
         // charger partie
         arrayButtons.add(new Button("textures/bouton charger partie", () -> {
+            charge.saisieMDP();
             
         }));
         
         // mot de passe
         arrayButtons.add(new Button("textures/bouton mot de passe", () -> {
+            mdp.saisieMDP();
             
         }));
         
         // scores
         arrayButtons.add(new Button("textures/bouton scores", () -> {
-            
+            scoring.loadscores();
+            scoring.test();
         }));
         
         // quitter

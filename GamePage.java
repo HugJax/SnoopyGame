@@ -69,25 +69,47 @@ public class GamePage extends Page {
                 this.stage.moveSnoopy(Movement.RIGHT);
                 break;
                 
-            case KeyEvent.VK_S:
-                FileReaderProject saveF= new FileReaderProject("save.txt");
+         case KeyEvent.VK_S:
+                JOptionPane.showMessageDialog(null, "Sauvegarde effectue");
+                FileReaderProject saveF= new FileReaderProject("save");
+                saveF.cleanInputmap("save","" ); 
                 saveF.setInput("save", String.valueOf(stage.getSnoopy().getPosX()));
-                saveF.setInput("save", String.valueOf(stage.getSnoopy().getPosX()));
+                saveF.setInput("save", String.valueOf(stage.getSnoopy().getPosY()));
+                
+                 FileReaderProject saveM= new FileReaderProject("savemap");
+                 
+                saveM.cleanInputmap("savemap","" ); 
+                 int[][] map = stage.getTilemap();
+                 int i,j;
+                   for (i=0;i<10;i++)
+        {       
+    
+                for (j=0;j<10;j++)
+                {
+                    if(j!=9)
+                        saveF.setInputmap("savemap",String.valueOf(map[i][j]) );  
+                    else
+                        saveF.setInput("savemap",String.valueOf(map[i][j]) );
+                }
+          }    
                 
                 break;
-                
-                case KeyEvent.VK_C:
-                int map[][]=stage.getTilemap();
+            
+            case KeyEvent.VK_C:
+                int map2[][]=stage.getTilemap();
                 int x=stage.getSnoopy().getPosX();
                 int y=stage.getSnoopy().getPosY();
-                if(map[y+1][x]==1)
-                    map[y+1][x]=0;
-                if(map[y-1][x]==1)
-                    map[y-1][x]=0;
-                if(map[y][x+1]==1)
-                    map[y][x+1]=0;
-                if(map[y][x-1]==1)
-                    map[y][x-1]=0;
+                if(map2[y+1][x]==1)
+                    map2[y+1][x]=0;
+                if(map2[y-1][x]==1)
+                    map2[y-1][x]=0;
+                if(map2[y][x+1]==1)
+                    map2[y][x+1]=0;
+                if(map2[y][x-1]==1)
+                    map2[y][x-1]=0;
+                break;
+                
+            case KeyEvent.VK_ESCAPE:
                 break;
                 
             case KeyEvent.VK_ESCAPE:

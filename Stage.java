@@ -8,6 +8,9 @@ import java.util.HashMap;
 import javax.swing.JPanel;
 import Openning.*;
 import JeuDeBase.Entity.*;
+import JeuDeBase.GameState.GamePage;
+import Menu.ChargerPartie;
+import javax.swing.JOptionPane;
 
 
 public class Stage extends JPanel {
@@ -31,6 +34,19 @@ public class Stage extends JPanel {
         {0, 0, 0, 0 ,0, 0, 0, 0, 0, 0/*, 0, 0, 0, 0 ,0, 0, 0, 0, 0, 0*/}
     };
     
+     private  int [][] tilemapOriginale = {
+        {0, 2, 0, 0 ,0, 0, 0, 0, 0, 0/*, 0, 0, 0, 0 ,0, 0, 0, 0, 0, 0*/},
+        {0, 0, 5, 5 ,5, 0, 0, 0, 0, 0/*, 0, 0, 0, 0 ,0, 0, 0, 0, 0, 0*/},
+        {1, 3, 5, 0 ,0, 0, 0, 0, 0, 0/*, 0, 0, 0, 0 ,0, 0, 0, 0, 0, 0*/},
+        {0, 0, 0, 0 ,0, 0, 0, 0, 0, 0/*, 0, 0, 0, 0 ,0, 0, 0, 0, 0, 0*/},
+        {0, 0, 0, 0 ,0, 0, 0, 0, 0, 0/*, 0, 0, 0, 0 ,0, 0, 0, 0, 0, 0*/},
+        {0, 0, 0, 0 ,0, 0, 0, 0, 0, 0/*, 0, 0, 0, 0 ,0, 0, 0, 0, 0, 0*/},
+        {0, 0, 0, 0 ,0, 0, 0, 0, 0, 0/*, 0, 0, 0, 0 ,0, 0, 0, 0, 0, 0*/},
+        {0, 0, 0, 0 ,0, 0, 0, 0, 0, 0/*, 0, 0, 0, 0 ,0, 0, 0, 0, 0, 0*/},
+        {0, 0, 0, 0 ,0, 0, 0, 0, 0, 0/*, 0, 0, 0, 0 ,0, 0, 0, 0, 0, 0*/},
+        {0, 0, 0, 0 ,0, 0, 0, 0, 0, 0/*, 0, 0, 0, 0 ,0, 0, 0, 0, 0, 0*/}
+    };
+     
     private int [][] bool = {
         {0, 0, 0, 0 ,0, 0, 0, 0, 0, 0/*, 0, 0, 0, 0 ,0, 0, 0, 0, 0, 0*/},
         {0, 0, 0, 0 ,0, 0, 0, 0, 0, 0/*, 0, 0, 0, 0 ,0, 0, 0, 0, 0, 0*/},
@@ -43,15 +59,18 @@ public class Stage extends JPanel {
         {0, 0, 0, 0 ,0, 0, 0, 0, 0, 0/*, 0, 0, 0, 0 ,0, 0, 0, 0, 0, 0*/},
         {0, 0, 0, 0 ,0, 0, 0, 0, 0, 0/*, 0, 0, 0, 0 ,0, 0, 0, 0, 0, 0*/}
     };
-    private final Snoopy snoopy;
     
-    public Stage(int [][] matrix) {
+    private final Snoopy snoopy;
+    private final Balle balle;
+    
+    public Stage(int [][] matrix,int [][] matrixOriginale) {
         
         super();
         this.setBounds(0, 0, 720, 720);
         this.tileWidth = this.getBounds().width / tilemapWidth;
         this.tileHeight = this.getBounds().height / tilemapHeight;
         this.snoopy = new Snoopy(5, 2, getToolkit().getImage("textures/snoopy.png"));
+        this.balle = new Balle(6,2, getToolkit().getImage("textures/snoopy.png"));
         
         // chargement des textures
         this.tiles = new HashMap<>();
@@ -62,13 +81,41 @@ public class Stage extends JPanel {
             this.tiles.put(3, getToolkit().getImage("textures/tile bloc piégé.png"));       // bloc piégé
             this.tiles.put(5, getToolkit().getImage("textures/tile bloc incassable.png"));  // bloc incassable
         tilemap=matrix;
+        this.tilemapOriginale=matrixOriginale;
         MyInterface.window.setBackground(Color.yellow);
         
         // affiche le nom du niveau pendant quelques secondes
-        
         validate();
         
     }
+    
+    public Stage(int [][] matrix,int [][] matrixOriginale,int x, int y) {
+        
+        super();
+        this.setBounds(0, 0, 720, 720);
+        this.tileWidth = this.getBounds().width / tilemapWidth;
+        this.tileHeight = this.getBounds().height / tilemapHeight;
+        this.snoopy = new Snoopy(x, y, getToolkit().getImage("textures/snoopy.png"));
+        this.balle = new Balle(6,2, getToolkit().getImage("textures/snoopy.png"));
+        
+        // chargement des textures
+        this.tiles = new HashMap<>();
+        
+            this.tiles.put(0, getToolkit().getImage("textures/tile case vide.png"));        // case vide
+            this.tiles.put(1, getToolkit().getImage("textures/tile bloc cassable.png"));    // bloc cassable
+            this.tiles.put(2, getToolkit().getImage("textures/tile bloc poussable.png"));   // bloc poussable
+            this.tiles.put(3, getToolkit().getImage("textures/tile bloc piégé.png"));       // bloc piégé
+            this.tiles.put(5, getToolkit().getImage("textures/tile bloc incassable.png"));  // bloc incassable
+        tilemap=matrix;
+        this.tilemapOriginale=matrixOriginale;
+        MyInterface.window.setBackground(Color.yellow);
+        
+        // affiche le nom du niveau pendant quelques secondes
+        validate();
+        
+    }
+    
+   
     
     // retourne vrai si le niveau est chargé avec succès, retourne faux sinon
    
@@ -91,7 +138,7 @@ public class Stage extends JPanel {
     {
     return snoopy;
     }
-    
+     
       public int[][] getTilemap()
     {
     return tilemap;
@@ -120,15 +167,19 @@ public class Stage extends JPanel {
                                 break;
                                    
                         }
+                    if(tilemap[SnoopyY-1][SnoopyX]==3){
+                   
+                   this.snoopy.move(movement);
+                   repaint();
+                   JOptionPane.showMessageDialog(null, "BOOM! Appuyez sur OK pour reprendre le niveau.");
+                   ChargerPartie load= new ChargerPartie();
+                    load.loadSaved(); 
+                   //MyInterface.window.setPage(new GamePage(0,tilemapOriginale,tilemapOriginale)); 
+                   
+                    }
                     
                     this.snoopy.move(movement);
-                    }      
-                        
-                    
-                        
-                   
-                    
-                    
+                    }          
                 }
                 break;
                 
@@ -147,6 +198,16 @@ public class Stage extends JPanel {
                                 }
                                 else
                                 break;
+                    }
+                     if(tilemap[SnoopyY+1][SnoopyX]==3){
+                   
+                   this.snoopy.move(movement);
+                   repaint();
+                   JOptionPane.showMessageDialog(null, "BOOM! Appuyez sur OK pour reprendre le niveau.");
+                   
+                    ChargerPartie load= new ChargerPartie();
+                    load.loadSaved(); 
+                   
                     }
                     this.snoopy.move(movement);
                             
@@ -174,7 +235,17 @@ public class Stage extends JPanel {
                                 else
                                 break;
                                 
-                        }       
+                        }  
+                         if(tilemap[SnoopyY][SnoopyX+1]==3){
+                  
+                            this.snoopy.move(movement);
+                            repaint();
+                            JOptionPane.showMessageDialog(null, "BOOM! Appuyez sur OK pour reprendre le niveau.");
+                            ChargerPartie load= new ChargerPartie();
+                            load.loadSaved(); 
+                            //MyInterface.window.setPage(new GamePage(0,tilemapOriginale,tilemapOriginale)); 
+                   
+                    }
                     this.snoopy.move(movement);
                     }
                     
@@ -198,6 +269,16 @@ public class Stage extends JPanel {
                                 else
                                 break;
                         }   
+                      if(tilemap[SnoopyY][SnoopyX-1]==3){
+                             
+                            this.snoopy.move(movement);
+                            repaint();
+                            JOptionPane.showMessageDialog(null, "BOOM! Appuyez sur OK pour reprendre le niveau.");
+                            ChargerPartie load= new ChargerPartie();
+                            load.loadSaved(); 
+                            //MyInterface.window.setPage(new GamePage(0,tilemapOriginale,tilemapOriginale)); 
+                   
+                    }
                     this.snoopy.move(movement);
         
                     }   
@@ -205,6 +286,14 @@ public class Stage extends JPanel {
                 break;
             
         }
+        repaint();
+        
+    }
+    
+    public void moveBalle() {
+       
+         balle.move();
+               
         repaint();
         
     }

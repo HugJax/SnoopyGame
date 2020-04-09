@@ -61,7 +61,6 @@ public class Stage extends JPanel {
     };
     
     private final Snoopy snoopy;
-    private final Balle balle;
     
     public Stage(int [][] matrix,int [][] matrixOriginale) {
         
@@ -70,7 +69,6 @@ public class Stage extends JPanel {
         this.tileWidth = this.getBounds().width / tilemapWidth;
         this.tileHeight = this.getBounds().height / tilemapHeight;
         this.snoopy = new Snoopy(5, 2, getToolkit().getImage("textures/snoopy.png"));
-        this.balle = new Balle(6,2, getToolkit().getImage("textures/snoopy.png"));
         
         // chargement des textures
         this.tiles = new HashMap<>();
@@ -96,7 +94,6 @@ public class Stage extends JPanel {
         this.tileWidth = this.getBounds().width / tilemapWidth;
         this.tileHeight = this.getBounds().height / tilemapHeight;
         this.snoopy = new Snoopy(x, y, getToolkit().getImage("textures/snoopy.png"));
-        this.balle = new Balle(6,2, getToolkit().getImage("textures/snoopy.png"));
         
         // chargement des textures
         this.tiles = new HashMap<>();

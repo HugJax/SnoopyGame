@@ -3,22 +3,26 @@
 
 package Menu;
 
+import JeuDeBase.Mapping.*;
+import Openning.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.DisplayMode;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.util.*;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.*;
 import java.nio.CharBuffer;
-import java.io.IOException;
-import java.io.FileOutputStream;
-import java.io.PrintWriter;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import javax.swing.*;
 
 
-public class Scores {
+public class Scores extends Page{
     
     private String[][] scorelist = new String[10][2];
     private ArrayList<String> fichier = new ArrayList<>();
@@ -27,6 +31,12 @@ public class Scores {
     private char[] chars;
     private String score ="";
     int i=0;
+        
+    public Scores() {
+        loadscores();
+        test();
+        displayscore();
+    }
     
     public void loadscores() {
         String fichier = "scoreboard.txt";
@@ -54,13 +64,38 @@ public class Scores {
     }
     
     void displayscore() {
+        JFrame jf = new JFrame();
+        jf.setTitle("Scores");
+        jf.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        String[] entete = {"Pseudo", "Score"};
+        JTable tab = new JTable(scorelist, entete);
+        jf.getContentPane().add(tab.getTableHeader(), BorderLayout.NORTH);
+        jf.getContentPane().add(tab, BorderLayout.CENTER);
+ 
+        jf.pack();
         
+        jf.setVisible(true);
     }
     
     public void test() {
         for(int i=0; i<4; i++) {
             System.out.println(scorelist[i][0] + " - " + scorelist[i][1]);
         }
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

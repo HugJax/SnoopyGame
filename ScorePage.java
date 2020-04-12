@@ -124,6 +124,7 @@ public class ScorePage extends Page{
         String fichier = "scoreboard.txt";
         String tableau[] = new String[2];
         int j=0;
+        String temp="";
         try {
           FileReader fr = new FileReader(fichier);
           BufferedReader br = new BufferedReader(fr);
@@ -143,11 +144,18 @@ public class ScorePage extends Page{
           }br.close();
         }
         catch(IOException ioe){System.out.println("erreur:"+ioe);}
+        for(int i=0; i<10; i++) {
+            for(int x=0; x<10; x++) {
+                if(Integer.parseInt(scorelist[i][1])>Integer.parseInt(scorelist[x][1])) {
+                    temp = scorelist[i][1];
+                    scorelist[i][1] = scorelist[x][1];
+                    scorelist[x][1] = temp;
+                    x--;
+                }
+            }
+        }
     }
-    /*
-    public void displayscore() {
-        
-    }*/
+    
     
     public void test() {
         for(int i=0; i<4; i++) {
